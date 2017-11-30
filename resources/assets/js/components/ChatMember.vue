@@ -18,7 +18,8 @@
                     axios.get('chat/'+member.id).then(response => {
                         window.bus.$emit('personal-messages', {'pmessages':response.data.pmessages,'member':member});
                     });
-                    window.bus.$emit('show-chat', true);
+
+                    window.bus.$emit('show-chat', {'member':member});
                 },
 
             }

@@ -20,7 +20,7 @@
                     this.$emit('sentmessage',{
                         message:this.messageText,
                         user: {
-                            name: window.user.userName
+                            name: window.user.name
                         },
                         created_at: moment.utc().format("YYYY-MM-DD HH:mm:ss")
                     });

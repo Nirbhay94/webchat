@@ -11,7 +11,7 @@
                 pMessageText : '',
             }
         },
-        props:['chatUser'],
+        props:['user'],
         methods:
             {
                 pSendMessage()
@@ -19,9 +19,9 @@
 //                    console.log(this.chatUser);
                     this.$emit('psentmessage',{
                         message:this.pMessageText,
-                        to_id:this.chatUser.id,
+                        to_id:this.user.id,
                         user: {
-                            name: window.user.userName
+                            name: window.user.name
                         },
                         created_at: moment.utc().format("HH:mm A")
                     });

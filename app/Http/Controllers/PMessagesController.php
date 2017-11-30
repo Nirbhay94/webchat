@@ -17,8 +17,8 @@ class PMessagesController extends Controller
      */
     public function index()
     {
-        $messages = PersonalChat::with('user')->get();
-        return ['messages' => $messages];
+        $messages = PersonalChat::all()->groupBy('user.id');
+        return ['pmessages' => $messages];
     }
 
     /**
@@ -39,12 +39,13 @@ class PMessagesController extends Controller
      */
     public function store(Request $request)
     {
-        $message = PersonalChat::create([
+        $pchat = PersonalChat::create([
             'message' => $request->get('message'),
             'from_id' => Auth()->user()->id,
             'to_id' => $request->get('to_id'),
         ]);
-        broadcast(new PMessagePosted($message,Auth()->user()))->toOthers();
+        $message = PersonalChat::with('user')->where('id',$pchat->id)->first();
+        broadcast(new PMessagePosted($pchat,Auth()->user()))->toOthers();
         return ['status' => 'success','pmessage' => $message];
     }
 
@@ -107,4 +108,6 @@ class PMessagesController extends Controller
         return ['pmessages' => $pchat];
 
     }
+
+
 }

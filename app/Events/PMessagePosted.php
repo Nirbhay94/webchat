@@ -38,7 +38,6 @@ class PMessagePosted implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        Log::info('was hit');
         return new PresenceChannel('pchatroom');
     }
 }

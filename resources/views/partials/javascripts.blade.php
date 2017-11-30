@@ -21,7 +21,7 @@
 <script>
     window._token = '{{ csrf_token() }}';
     window.user = {!! json_encode([
-        'userName' => (Auth::check()) ? Auth()->user()->name: '',
+        'name' => (Auth::check()) ? Auth()->user()->name: '',
         'id' => (Auth::check()) ? Auth()->user()->id: '',
     ]) !!};
 </script>

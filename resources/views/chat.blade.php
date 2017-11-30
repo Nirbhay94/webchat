@@ -36,6 +36,6 @@
                 </div>
             </div>
         </div>
-        <chat-box></chat-box>
+        <chat-boxes v-bind:members="members"></chat-boxes>
     </div>
 @endsection
